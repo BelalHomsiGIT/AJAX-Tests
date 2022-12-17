@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax-deno6-json2</title>
+    <!-- make links in new-tab -->
+    <base target="_blank">
+    <script src="jquery-3.6.1.min.js"></script>
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+    #data{
+        max-width: 50%;
+        min-height: 50px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid;
+        text-align: center;
+    }
+    .name-box{
+        width: 30%;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid darkblue;
+        color: darkblue;
+        text-align: center;
+    }
+</style>
+<body>
+    <h1>AJAX with PHP by jQuery</h1>
+    <h2 style="font-style: italic;">$.post(URL,data,function(data,status,xhr),dataType)</h2>
+    <div id="data">Response from PHP file</div>
+    <div class="name-box">
+        <p>Enter Name and click</p>
+        Name <input type="text" name="uname" id="uname">
+        <button id="getDataBy-post">Get Data</button>
+    </div>
+    <div>
+        <a href="https://api.jquery.com/jQuery.post/">jquery.com/jQuery.post/</a><br>
+        <a href="https://www.w3schools.com/jquery/ajax_post.asp">w3schools.com/jquery/ajax_post</a>
+    </div>
+    <script>
+        /* POST Ajax in Javascript */
+        // function doit(){
+        //     let myReq = new XMLHttpRequest();
+        //     myReq.onreadystatechange = function(){
+        //         if(this.readyState === 4 && this.status === 200){
+        //             document.getElementById("data").innerHTML = "<h1>" + this.responseText + "</h1>";
+        //         }
+        //     }
+        //     let sentName = document.querySelector('input').value;
+        //     console.log(sentName);
+        //     /* With POST Method we can send Data to PHP file in the server
+        //     to manipulate it and the result will be in Response .*/
+        //     // We use params as string  parameter in send method:
+        //     myReq.open("POST", "actionPOST.php", true);
+        //     // NEXT STATEMENT VERY INPORTANT WITH POST:
+        //     myReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //     myReq.send("name="+sentName);
+        // }
+
+        /* POST Ajax in jQuery */
+        $(function(){
+            $("#getDataBy-post").on("click", function(){
+                let setName = $("#uname").val();
+                $.post("actionPOST.php", {name : setName}, function(x,y,z){
+                    console.log(x) // Data
+                    console.log(y) // Status
+                    console.log(z) // xhr Object
+                })
+            })
+        })
+
+    </script>
+</body>
+</html>
+<!-- We must open the html file in server as Apache -->

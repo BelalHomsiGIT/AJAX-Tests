@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax-php-GET</title>
+    <!-- make links in new-tab -->
+    <base target="_blank">
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+    #data{
+        max-width: 50%;
+        min-height: 50px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid;
+        text-align: center;
+    }
+    .name-box{
+        width: 30%;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid darkblue;
+        color: darkblue;
+        text-align: center;
+    }
+</style>
+<body>
+    <div id="data">Response from PHP file</div>
+    <div class="name-box">
+        <p>Enter Name and click</p>
+        Name <input type="text" name="uname" id="uname">
+        <button onclick="doit()">Send</button>
+    </div>
+    <div>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event">HTMLElement: input event</a><br>
+        <a href="https://www.w3schools.com/js/js_validation.asp">JavaScript Forms</a>
+    </div>
+    <script>
+        function doit(){
+        let myReq = new XMLHttpRequest();
+        myReq.onreadystatechange = function(){
+            if(this.readyState === 4 && this.status === 200){
+                document.getElementById("data").innerHTML = "<h1>" + this.responseText + "</h1>";
+            }
+        }
+
+        let sentName = document.querySelector('input').value;
+        console.log(sentName.toUpperCase());
+        /* With GET Method we can send Data to PHP file in the server
+           to manipulate it and the result will be in Response .*/
+        // We use params with url in GET Method as second parameter in open() method
+        myReq.open("GET", "actionGET.php?name="+sentName, true);
+        myReq.send()
+}
+    </script>
+</body>
+</html>
+<!-- We must open the html file in server as Apache -->

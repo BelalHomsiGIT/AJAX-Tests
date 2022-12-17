@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        #demo1, #demo2{
+            max-width: 600px;
+            min-height: 250px;
+            margin: 15px auto;
+            text-align: left;
+            padding: 10px;
+            border: 1px solid lightgrey;
+        }
+        #demo1{
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Multiple Callback Functions</h2>
+    <p>If you have more than one AJAX task in a website, you should create one function for executing the XMLHttpRequest object, <br>
+         and one callback function for each AJAX task.</p>
+    <div id="demo1">Data</div>
+    <div id="demo2">Data</div>
+    <button type="button" onclick="getData()">Info1 - info2</button>
+
+    <script>
+        function getData(){
+            loadDoc("ajax_info1.txt", myFunction1);
+            loadDoc("ajax_info2.txt", myFunction2);
+        }
+        function loadDoc(url, cFunction) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                cFunction(this);
+            }
+            xhttp.open("GET", url);
+            xhttp.send();
+        }
+
+        function myFunction1(xhttp) {
+            document.getElementById("demo1").innerHTML = xhttp.responseText;
+            //css
+            document.getElementById("demo1").style.backgroundColor='red';
+            document.getElementById("demo1").style.color='lightgrey';
+        }
+        function myFunction2(xhttp) {
+            document.getElementById("demo2").innerHTML = xhttp.responseText;
+            //css
+            // $("#demo2").css({"color":"red"});
+            document.getElementById("demo2").style.backgroundColor='lightgrey';
+            document.getElementById("demo2").style.color='red';
+        }
+    </script>
+</body>
+</html>

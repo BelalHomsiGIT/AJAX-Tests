@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax-deno6-json2</title>
+    <style>
+        .table-data{
+            width: 90%;
+            margin: auto;
+            text-align: center;
+        }
+        table{
+            width: 80%;
+            margin: auto;
+            box-shadow: 1px 3px 10px 2px grey;
+        }
+        table, tr, td{
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+        th{
+            height: 50px;
+            background-color: black;
+            font-size: 20px;
+            color: whitesmoke;
+            font-weight: bold;
+        }
+        td{
+            height: 35px;
+        }
+        .btn-del{
+            border: none;
+            background-color: red;
+            border-radius: 4px;
+            color: rgb(226, 197, 197);
+            padding: 5px 8px;
+            box-shadow: 1px 1px 4px #817b7b;
+        }
+    </style>
+    <script src="jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+    <h1 style="text-align: center;">JSON Data in Table</h1>
+    <div class="table-data">
+        <table id="myTbl">
+            <thead>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <p style="width: 200px; margin: 30px auto; text-align: center; color: orangered;" id="no-data"></p>
+    <!-- <button class="btn-del" onclick="del(this)">test</button> -->
+    
+    <script>
+        const myTable = document.getElementById("myTbl");
+        const btn = `<button class="btn-del" onclick="del(this)">Del</button>`
+
+        let myReq = new XMLHttpRequest()
+        myReq.onload = function(){
+            if(this.readyState === 4 && this.status === 200){
+                let myJsObj = JSON.parse(this.responseText)
+                let myJsObjLen = myJsObj.length
+                // console.log(myJsObjLen)
+                if(myJsObjLen>0){
+                    for(let idx = 0; idx < myJsObj.length; idx++){
+                        let name = myJsObj[idx].username
+                        let age = myJsObj[idx].age
+                        let row = myTable.insertRow(-1)
+                        let td1 = row.insertCell(0)
+                        td1.innerHTML = name
+                        let td2 = row.insertCell(1)
+                        td2.innerHTML = age
+                        let td3 = row.insertCell(2)
+                        td3.innerHTML = btn
+                    }
+                }else{
+                    document.getElementById("no-data").innerHTML = "No Data !"
+                }
+            }
+        }
+        myReq.open("GET", "mydata.json", true);
+        myReq.send()
+
+        function del(currBtn){
+            let idx = currBtn.parentNode.parentNode.rowIndex
+            myTable.deleteRow(idx)
+        }
+    </script>
+</body>
+</html>

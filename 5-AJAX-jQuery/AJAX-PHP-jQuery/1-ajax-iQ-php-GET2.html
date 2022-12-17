@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax-deno6-json2</title>
+    <!-- make links in new-tab -->
+    <base target="_blank">
+    <script src="jquery-3.6.1.min.js"></script>
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+    #data{
+        max-width: 50%;
+        min-height: 50px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid;
+        text-align: center;
+    }
+    .name-box{
+        width: 30%;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid darkblue;
+        color: darkblue;
+        text-align: center;
+    }
+</style>
+<body>
+    <h1>AJAX with PHP by jQuery</h1>
+    <h2 style="font-style: italic;">$.get(URL, data, function(data,status,xhr), dataType)</h2>
+    <div id="data">Response from PHP file</div>
+    <div class="name-box">
+        <p>Enter Name and click</p>
+        Name <input type="text" name="uname" id="uname">
+        <button id="getDataBy-get">Get Data</button>
+    </div>
+    <div>
+        <a href="https://api.jquery.com/jquery.get/">jquery.com/jquery.get/</a><br>
+        <a href="https://www.w3schools.com/jquery/ajax_get.asp">w3schools/jquery/ajax_get</a>
+    </div>
+    <script>
+        /* GET Ajax in Javascript */
+        // function doit(){
+            // let myReq = new XMLHttpRequest();
+            // myReq.onreadystatechange = function(){
+            //     if(this.readyState === 4 && this.status === 200){
+            //         document.getElementById("data").innerHTML = "<h1>" + this.responseText + "</h1>";
+            //     }
+            // }
+            // let sentName = document.querySelector('input').value;
+            // console.log(sentName);
+            // myReq.open("GET", "actionGET.php?name="+sentName, true);
+            // myReq.send()
+        // }
+
+        /* GET Ajax in iQuery */
+        $(function(){
+            $("#getDataBy-get").on("click", function(){
+                let setName = $("#uname").val();
+                $.get("actionGET.php?name=" + setName, function(data){
+                    $("#data").text(data)
+                })
+            })
+        })
+    </script>
+</body>
+</html>
+<!-- We must open the html file in server as Apache -->

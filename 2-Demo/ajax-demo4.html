@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo-4</title>
+</head>
+<body>
+    <script>
+        let myReq = new XMLHttpRequest();
+        myReq.onreadystatechange = function(){
+            console.log(this.statusText) // "" OK OK OK
+        }
+        myReq.open("GET", "ajax_info1.txt", true);
+        myReq.send()
+    </script>
+    
+    inspect ==> Network <br>
+    inspect ==> Consloe <br>
+    "" <br>
+    OK <br>
+    OK <br>
+    OK <br>
+</body>
+</html>

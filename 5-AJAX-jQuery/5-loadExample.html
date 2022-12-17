@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>load jQuery-Method</title>
+    <script src="jquery-3.6.1.min.js"></script>
+    <style>
+        .toShow{
+            /* width: 500px; */
+            height: 200px;
+            border: 1px solid grey;
+            margin: 15px;
+            padding: 15px;
+            color: darkgreen;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ajax with jQuery</h1>
+    <h2>.load( url [, data ] [, complete ] )Returns: jQuery <br></h2>
+    <h3> Load data from the server and place the returned HTML into the matched elements.</h3>
+    <h3><a href="https://api.jquery.com/load/">jquery.com/load/</a></h3>
+
+    <div class="toShow" id="showData"><h3>show HTML file here !!!</h3></div>
+
+    <button data-page="3-demo1.html">LOAD demo1.html</button>
+    <button data-page="3-demo2.html">LOAD demo2.html</button>
+    <button data-page="3-demo2.html" data-part="yes">LOAD Part Of demo2.html</button>
+    <script>
+
+        $(function(){
+            $("button").on("click", function(){
+                if(typeof $(this).data("part") !== 'undefined') {
+                    let part = $(this).data("part")
+                    $("#showData").load( $(this).data("page") + " .details", function(resTxt, txtSts, xhtp){
+                        if( txtSts === "success"){
+                            console.log("Data Loaded / part")
+                    }})
+                }else{
+                    $("#showData").load( $(this).data("page"), function(resTxt, txtSts, xhtp){
+                    if( txtSts === "success"){
+                        console.log("Data Loaded")
+                    }
+                })
+                }
+            })
+        })
+
+    </script>
+</body>
+</html>

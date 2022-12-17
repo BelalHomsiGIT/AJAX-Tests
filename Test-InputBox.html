@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Type something1..." id="myInput">
+    <button type="button" onclick="getInputValue();">Get Value - Console</button>
+    <br> <br> <br>
+    <input type="text" placeholder="Type something2..." id="myInput2" onkeyup="getInputValue2()";>
+    Type any thing. Look at Console.
+
+    <br><br><br><hr>
+    <h3>Start typing a name in the input field below:</h3>
+    <p>Your Input Value: <span id="inputs"></span></p> 
+    <p>First name: <input type="text" id="myInput3" onkeyup="getInputValue3()"></p>
+
+<script>
+    function getInputValue(){
+        // Selecting the input element and get its value 
+        var inputVal = document.getElementById("myInput").value;
+        
+        // Displaying the value
+        console.log(inputVal)
+    }
+    function getInputValue2(){
+        // Selecting the input element and get its value 
+        var inputVal = document.getElementById("myInput2").value;
+        
+        // Displaying the value
+        console.log(inputVal)
+    }
+    function getInputValue3(){
+        let inputVal = document.getElementById("myInput3").value;
+        // console.log(inputVal)
+        document.getElementById("inputs").innerHTML = inputVal
+    }
+</script>
+</body>
+</html>

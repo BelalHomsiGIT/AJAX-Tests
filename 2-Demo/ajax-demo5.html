@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo-5</title>
+</head>
+<body>
+    <script>
+
+        // Create a New Object as XMLHttpRequest
+        let myReq = new XMLHttpRequest();
+        //onreadystatechange is a event for xhr object
+        //when it occur the function run.
+
+        // Check if the Ready State is Changed => Calling Function when it changed:
+        myReq.onreadystatechange = function(){
+
+            /* Checking The readyState And status...
+            readyState ==> The State of the Request:
+                [0] -> The Request Not Initialized.
+                [1] -> Server Connection Established.
+                [2] -> Request Received
+                [3] -> Processing Request.
+                [4] -> Request is finished And Response is Ready.
+            status => Response Status Code:
+                [200] ..
+                [404] ..
+                ......
+            statusText => Response Status Text:
+                [200] OK
+                [404] Not found
+                ......
+            */
+            // If Requset is Ready and Response is OK so Do Some Acthions:
+            if(this.readyState === 4 && this.status === 200){
+                // Treat the Response, Output The Response on the page..
+                console.log(this) // show the Object
+            }
+
+        }
+
+        // To Send a Request to a server, we use the open() and send() methods of the XMLHttpRequest object.
+        /* open(method, url, async, userbane, password) --Specifies the type of request
+                method: GET or POST or PUT or ..
+                url: The Server Location or The File which has the Data.
+                async: true 'Default' or false.
+                username & password if necessary.
+            send() -- Sends the request to the server (used for GET)
+            or
+            send(string) -- Sends the request to the server (used for POST)
+        */
+        myReq.open("GET", "ajax_info1.txt", true);
+        myReq.send()
+        
+    </script>
+    
+    inspect ==> Consloe <br>
+    show all methods and properties for XMLHttpRequest object
+</body>
+</html>

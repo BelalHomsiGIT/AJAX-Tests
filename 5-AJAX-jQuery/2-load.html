@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>load jQuery-Method</title>
+    <script src="jquery-3.6.1.min.js"></script>
+    <style>
+        .showData{
+            /* width: 500px; */
+            height: 200px;
+            border: 1px solid grey;
+            margin: 15px;
+            padding: 15px;
+            color: darkgreen;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ajax with jQuery</h1>
+    <h2>.load( url [, data ] [, complete ] )Returns: jQuery <br></h2>
+    <h3> Load data from the server and place the returned HTML into the matched elements.</h3>
+    <h3><a href="https://api.jquery.com/load/">jquery.com/load/</a></h3>
+
+    <div class="showData" id="loadData"><h3>show responseText here, by .load jQuery Method</h3></div>
+    <button onclick="getData1()">LOAD ajax_info1</button>
+    <button onclick="getData2()">LOAD ajax_info2</button>
+
+    <script>
+        // load method in jQuery is instead of all Javascript AJAX code above !! WOW
+        function getData1(){
+            $(function(){
+                    $("#loadData").load("ajax_info1.txt")
+                })
+        }
+
+        function getData2(){
+            $(function(){
+                    $("#loadData").load("ajax_info2.txt")
+                })
+        }
+    </script>
+</body>
+</html>

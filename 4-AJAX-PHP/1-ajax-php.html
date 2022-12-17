@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax-php-test</title>
+</head>
+<body>
+    <div id="data"></div>
+    <button onclick="doit()">Click</button>
+    <script>
+        function doit(){
+        let myReq = new XMLHttpRequest();
+        myReq.onreadystatechange = function(){
+            if(this.readyState === 4 && this.status === 200){
+                console.log(this.responseText);
+                document.getElementById("data").innerHTML = "<h1>" + this.responseText + "</h1>";
+            }
+        }
+        /* With GET Method we can send Data to PHP file in the server
+           to manipulate it and the result will be in Response .*/
+        // We use params with url in GET Method as second parameter in open() method
+        myReq.open("GET", "actionGET.php?name=Ahmed", true);
+        myReq.send()
+}
+    </script>
+</body>
+</html>
+<!-- We must open the html file in server as Apache -->

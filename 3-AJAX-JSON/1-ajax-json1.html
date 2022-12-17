@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax-json1</title>
+</head>
+<body>
+    <script>
+        let myReq = new XMLHttpRequest();
+        myReq.onreadystatechange = function(){
+            if(this.readyState === 4 && this.status === 200){
+                // show the Data as String 'TEXT'
+                console.log(this.responseText)
+            }
+
+        }
+        myReq.open("GET", "mydata.json", true);
+        myReq.send()
+    </script>
+    
+    inspect ==> Consloe <br>
+    show the json file content as String.
+</body>
+</html>

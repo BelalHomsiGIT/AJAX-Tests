@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax-deno6-json2</title>
+    <!-- make links in new-tab -->
+    <base target="_blank">
+    <script src="jquery-3.6.1.min.js"></script>
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+    .name-box{
+        width: 30%;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid darkblue;
+        color: darkblue;
+        text-align: center;
+    }
+    a{
+        font-size: 18px;
+        font-style: italic;
+        line-height: 26px;
+    }
+</style>
+<body>
+    <h1>AJAX with PHP by jQuery</h1>
+    <h2 style="font-style: italic;">$.ajax(alot of params)</h2>
+    <div class="name-box">
+        <button id="getDataBy-ajax">Get Data</button>
+    </div>
+    
+    <div>
+        <a href="https://www.tutorialsteacher.com/jquery/jquery-ajax-method">tutorialsteacher.com/jquery/ajax-method</a><br>
+        <a href="https://www.javatpoint.com/jquery-ajax-method">javatpoint.com/jquery-ajax-method</a><br>
+        <a href="https://www.tutorialspoint.com/jquery/jquery-ajax.htm">tutorialspoint.com/jquery-ajax.htm</a><br>
+        <a href="https://www.w3schools.com/jquery/ajax_ajax.asp#:~:text=The%20ajax()%20method%20is,other%20methods%20cannot%20be%20used.">w3schools.com/jquery/ajax_ajax</a><br>
+        <a href="https://www.w3schools.com/jquery/ajax_ajax.asp#:~:text=The%20ajax()%20method%20is,other%20methods%20cannot%20be%20used.">w3schools.com/jquery/ajax_ajax</a><br>
+        <a href="https://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings">api.jquery.com/jQuery.ajax/#jQuery-ajax-settings</a><br>
+
+    </div>
+
+    <script>
+        $(function(){
+            $("#getDataBy-ajax").on("click", function(){
+                // let setName = $("#uname").val();
+                $.ajax(
+                        {
+                        beforeSend: function(xhr){      // Running before any actions
+                            console.log('before send', xhr)
+                        },
+
+                        method: 'POST', //Request Method - Default is GET. Note: in old VER it's type instead of method
+                        url: 'actionPOST.php',  // URL to send the Request - Default is current url(page)
+                        
+                        catch: false, // Default is true, when calling again return the same data(faster)
+                        async: true, // Asyncronous or not, Default is true
+                        timeout: 2000, // = 2 sec, the time the request wait before run
+                        
+                        dataType: 'text', // the Type of Data which back from Server: xml, json, script, or html - Default: Intelligent Guess
+                        username: '', // For Authentication
+                        password : '', // For Authentication
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8', // Default
+
+                        data: {name: "Belal"}, // Data to Send by the Request.
+                        // When the Requset is Succeded without Error
+                        success: function(data, status, xhr){ // Function Run when the Request is Succeeded.
+                            console.log(data)  // The Data as Response
+                            console.log(status) // Requset Status
+                            console.log(xhr)  // Object
+                        },
+                        // When the Requset is Failur and get Error
+                        error: function(xhr, status, errMsg){
+                            console.log(xhr)  // Object
+                            console.log(status) // Requset Status
+                            console.log(errMsg) // Error Message - The Error Type as TEXT
+                        },
+                        // When the Requset is Finished anyway Succeded OR Error
+                        complete: function(xhr, status){ // This Function will Run Always
+                            console.log("competed!!!")
+                            console.log(xhr)
+                            console.log(status)
+                        }
+                        }
+                    )
+            })
+        })
+
+    </script>
+</body>
+</html>
+<!-- We must open the html file in server as Apache -->

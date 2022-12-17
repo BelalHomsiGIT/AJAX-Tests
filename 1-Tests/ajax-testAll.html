@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        #demo{
+            max-width: 600px;
+            min-height: 250px;
+            margin: 15px auto;
+            text-align: left;
+            padding: 10px;
+            border: 1px solid lightgrey;
+        }
+    </style>
+</head>
+<body>
+    <h2>The XMLHttpRequest Object</h2>
+
+    <p>Let AJAX change this text.</p>
+    <div id="demo">Data</div>
+    <button type="button" onclick="loadDoc('ajax_info1.txt')">Change Content Info1</button>
+    <button type="button" onclick="loadDoc('ajax_info2.txt')">Change Content Info1</button>
+   
+    <script>
+        function loadDoc(info) {
+            // Create an XMLHttpRequest Object
+            const xhttp = new XMLHttpRequest();
+
+            // Send a Request to a Server
+            xhttp.open("GET", info);  // open(method, url, async) -- method: GET/POST -- url: Data Source --async: true'Default'/false
+            xhttp.send();               // send() for GET - send(string) for POST
+            
+            // Defines a function to be called when the Request is Recieved (loaded)
+            xhttp.onload = function() {
+                document.getElementById("demo").innerHTML = this.responseText;
+            }
+        }
+    </script>
+</body>
+</html>

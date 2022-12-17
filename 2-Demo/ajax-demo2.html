@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo-2</title>
+</head>
+<body>
+    <script>
+        let myReq = new XMLHttpRequest();
+        //onreadystatechange is a property for xhr object
+        //when it changed the function run        
+        myReq.onreadystatechange = function(){
+            console.log(this.readyState) // 1 2 3 4
+        }
+        myReq.open("GET", "ajax_info1.txt", true);
+        myReq.send()
+    </script>
+    
+    inspect ==> Network <br>
+    inspect ==> Consloe <br>
+    1 <br>
+    2 <br>
+    3 <br>
+    4 <br>
+</body>
+</html>

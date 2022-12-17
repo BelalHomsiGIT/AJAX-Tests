@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo-6</title>
+    <style>
+        body{
+            margin: 20px;
+            background-color: lightgray;
+            box-sizing: border-box;
+        }
+        p{
+            font-size: 20px;
+        }
+        span{
+            color: darkred;
+            font-style: italic;
+            font-weight: bold;
+        }
+        ul{
+            font-size: 18px;
+            line-height: 30px;
+        }
+        .main{
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-content: center;
+        }
+        .main div{
+            width: 48%;
+            padding: 10px;
+            border: 1px solid blue;
+        }
+        pre{
+            font-size: 14px;
+            font-weight: bold;
+        }
+        #showData{
+            border: 1px solid darkred;
+            width: 50%;
+            min-height: 250px;
+            margin: auto;
+            padding: 10px;
+            text-align: center;
+        }
+        .btns{
+            width: auto;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .btns button{
+            width: 180px;
+            height: 40px;
+            border: 2px solid darkslategrey;
+            border-radius: 8px;
+            background-color: black;
+            color: white;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>What's AJAX?</h1>
+    <p>AJAX stands for <span>Asynchronous JavaScript And XML</span>. In a nutshell, it is the use of the XMLHttpRequest object to communicate with servers. <br>
+         It can send and receive information in various formats, including JSON, XML, HTML, and text files. <br>
+          AJAX's most appealing characteristic is its "asynchronous" nature, which means it can communicate with the server, exchange data, and update the page without having to refresh the page.</p>
+    <p style="font-style:italic ;">The two major features of AJAX allow you to do the following:</p>
+    <ul>
+        <li>Make requests to the server without reloading the page.</li>
+        <li>Receive and work with data from the server.</li>
+    </ul>
+    <div class="main">
+        <div class="div1">
+            onload
+            <pre>
+    const xhttp = new XMLHttpRequest();
+    
+    xhttp.onload = function() {
+        document.getElementById("demo").innerHTML = this.responseText;
+    }
+
+    xhttp.open("GET", "ajax_info2.txt", true);
+
+    xhttp.send();
+            </pre>
+        </div>
+        <div class="div2">
+            onreadystatechange
+            <pre>
+    const myReq = new XMLHttpRequest();
+
+    myReq.onreadystatechange = function(){
+        if(this.readyState === 4 && this.status === 200){
+            document.getElementById("demo").innerHTML = this.responseText;
+    }
+
+    myReq.open("GET", "ajax_info1.txt", true);
+
+    myReq.send()
+            </pre>
+        </div>
+    </div>
+    <div id="showData">Data as responseText</div>
+    <div class="btns">
+        <button onclick="use_onload()">Use onload</button>
+        <button onclick="ResetShow()">Reset</button>
+        <button onclick="use_onreadystatechange()">Use onreadystatechange</button>
+    </div>
+
+
+
+
+
+    <script>
+        function use_onreadystatechange(){
+            let myReq = new XMLHttpRequest();
+            myReq.onreadystatechange = function(){
+                if(this.readyState === 4 && this.status === 200){
+                    document.getElementById("showData").innerHTML = this.responseText;
+                }
+            }
+            myReq.open("GET", "ajax_info2.txt", true);
+            myReq.send()
+        }
+
+        function use_onload(){
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                document.getElementById("showData").innerHTML = this.responseText;
+            }
+            xhttp.open("GET", "ajax_info2.txt", true);
+            xhttp.send();
+        }
+
+        function ResetShow(){
+            document.getElementById("showData").innerHTML = "Data as responseText";
+        }
+    </script>
+</body>
+</html>
